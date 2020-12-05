@@ -6,7 +6,7 @@ const permissions = require('../../utils/permissions.json');
 const { MessageEmbed, Message } = require('discord.js')
 const colours = require('../../json/colors.json')
 
-module.exports = class GiveRoleCommand extends BaseCommand {
+module.exports = class RoleInfoCommand extends BaseCommand {
   constructor() {
     super('roleinfo', 'Roles', ['ri']);
   }
