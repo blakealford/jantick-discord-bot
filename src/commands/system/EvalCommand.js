@@ -8,7 +8,7 @@ module.exports = class GiveRoleCommand extends BaseCommand {
 
   async run(client, message, args) {
     if(!message.member.roles.cache.find(role => role.id === '778566475489083432') && !message.member.roles.cache.find(role => role.id === '771678863410987018'))
-    const input = args.join(' ');
+    var input = args.join(' ');
     if (!input) return this.sendErrorMessage(message, 0, 'Please provide code to eval');
     if(!input.toLowerCase().includes('token')) {
 
