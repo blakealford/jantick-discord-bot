@@ -1,5 +1,5 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
-
+const {getRoleFromMention, getMemberFromMention} = require('../../utils/registry')
 const { MessageEmbed, Message } = require('discord.js')
 const colours = require('../../json/colors.json')
 
