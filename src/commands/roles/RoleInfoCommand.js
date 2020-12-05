@@ -1,7 +1,7 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const {getRoleFromMention} = require('../../utils/registry')
+const {getRolesFromMention} = require('../../utils/registry')
 const permissions = require('../../utils/permissions.json');
 
 module.exports = class RoleInfoCommand extends BaseCommand {
@@ -11,7 +11,7 @@ module.exports = class RoleInfoCommand extends BaseCommand {
 
   run(message, args) {
 
-    const role = getRoleFromMention(message, args[0]) || message.guild.roles.cache.get(args[0]);
+    const role = getRolesFromMention(message, args[0]) || message.guild.roles.cache.get(args[0]);
     if (!role)
       return message.channel.send('Please mention a role or provide a valid role ID');
 
