@@ -9,7 +9,7 @@ module.exports = class BlacklistCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
-        if(message.author.id !== "587499208937046036") { // I am trouble shooting, the bot doesnt turn on 
+    if(!message.member.roles.cache.find(role => role.id === '778566475489083432') && !message.member.roles.cache.find(role => role.id ==='771678863410987018'))  { // I am trouble shooting, the bot doesnt turn on 
             return message.channel.send("Administration commands are restriced to Jantick Admins with `Type 3 Access`")
           } else {
         
