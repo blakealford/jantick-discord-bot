@@ -1,7 +1,7 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const {getRoleFromMention, getMemberFromMention} = require('../../utils/registry')
+const {getRoleFromMention} = require('../../utils/registry')
 const permissions = require('../../utils/permissions.json');
 
 module.exports = class RoleInfoCommand extends BaseCommand {

@@ -2,16 +2,9 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
-module.exports = class TrumpTweetCommand extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'trumptweet',
-      aliases: ['trump'],
-      usage: 'trumptweet <message>',
-      description: 'Display\'s a custom tweet from Donald Trump with the message provided.',
-      type: client.types.FUN,
-      examples: ['trumptweet I am the best Discord Bot!']
-    });
+module.exports = class TrumpTweetCommand extends BaseCommand {
+  constructor() {
+    super('trump', 'fun', []);
   }
   async run(message, args) {
 
