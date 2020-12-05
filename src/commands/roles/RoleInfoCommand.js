@@ -1,18 +1,16 @@
-
-
 const BaseCommand = require('../../utils/structures/BaseCommand');
+const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const {getRoleFromMention, getMemberFromMention} = require('../../utils/registry')
 const permissions = require('../../utils/permissions.json');
-const { MessageEmbed, Message } = require('discord.js')
-const colours = require('../../json/colors.json')
 
 module.exports = class RoleInfoCommand extends BaseCommand {
   constructor() {
-    super('roleinfo', 'Roles', ['ri']);
+    super('roleinfo', 'roles', []);
   }
 
-  async run(client, message, args) {
+  run(message, args) {
+
     const role = getRoleFromMention(message, args[0]) || message.guild.roles.cache.get(args[0]);
     if (!role)
       return message.channel.send('Please mention a role or provide a valid role ID');
@@ -47,3 +45,4 @@ module.exports = class RoleInfoCommand extends BaseCommand {
     message.channel.send(embed);
   }
 }
+
