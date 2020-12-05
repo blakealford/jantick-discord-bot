@@ -1,29 +1,39 @@
-const BaseCommand = require('../../utils/structures/BaseCommand');
 
-module.exports = class EvalCommand extends BaseCommand {
+const { MessageEmbed } = require('discord.js');
+const BaseCommand = require('../../utils/structures/BaseCommand');
+module.exports = class GiveRoleCommand extends BaseCommand {
   constructor() {
-    super('eval', 'system', []);
+    super('eval', 'System', []);
   }
 
   async run(client, message, args) {
-    let code = args.join(' '),
-    res;
+    if(!message.member.roles.cache.find(role => role.id === '778566475489083432') && !message.member.roles.cache.find(role => role.id === '771678863410987018'))
+    const input = args.join(' ');
+    if (!input) return this.sendErrorMessage(message, 0, 'Please provide code to eval');
+    if(!input.toLowerCase().includes('token')) {
 
-try {
-    res = await new Promise((resolve, reject) => resolve(eval(code)));
+      const embed = new MessageEmbed();
 
-    if (typeof res !== 'string') {
-        res = require('util').inspect(res, { depth: 0 });
+      try {
+        let output = eval(input);
+        if (typeof output !== 'string') output = require('util').inspect(output, { depth: 0 });
+        
+        embed
+          .addField('Input', `\`\`\`js\n${input.length > 1024 ? 'Too large to display.' : input}\`\`\``)
+          .addField('Output', `\`\`\`js\n${output.length > 1024 ? 'Too large to display.' : output}\`\`\``)
+          .setColor('#66FF00');
+
+      } catch(err) {
+        embed
+          .addField('Input', `\`\`\`js\n${input.length > 1024 ? 'Too large to display.' : input}\`\`\``)
+          .addField('Output', `\`\`\`js\n${err.length > 1024 ? 'Too large to display.' : err}\`\`\``)
+          .setColor('#FF0000');
+      }
+
+      message.channel.send(embed);
+
+    } else {
+      message.channel.send('(╯°□°)╯︵ ┻━┻ MY token. **MINE**.');
     }
-
-    if (res.includes(process.env.TOKEN)) {
-        res = res.replace(new RegExp(process.env.DISCORD_BOT_TOKEN, 'g'), '[TOK3N]');
-    }
-
-    message.channel.send(res, { split: true });
-} catch (e) {
-    bot.logger.error(e);
-    message.channel.send("Something went wrong.");
-}
   }
 }
