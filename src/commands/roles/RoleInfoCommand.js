@@ -2,6 +2,7 @@
 
 const BaseCommand = require('../../utils/structures/BaseCommand');
 const moment = require('moment');
+const {getRoleFromMention, getMemberFromMention} = require('../../utils/registry')
 const permissions = require('../../utils/permissions.json');
 const { MessageEmbed, Message } = require('discord.js')
 const colours = require('../../json/colors.json')
