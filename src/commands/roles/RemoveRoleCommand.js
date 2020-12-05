@@ -3,7 +3,7 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 const { MessageEmbed, Message } = require('discord.js')
 const colours = require('../../json/colors.json')
 
-module.exports = class GiveRoleCommand extends BaseCommand {
+module.exports = class RemoveRoleCommand extends BaseCommand {
   constructor() {
     super('removerole', 'Roles', []);
   }
